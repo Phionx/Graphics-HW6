@@ -17,10 +17,12 @@ def add_box( points, x, y, z, width, height, depth ):
     add_edge(points, x, y - height, z - depth, x, y - height, z)
 
 def add_sphere( points, cx, cy, cz, r, step ):
-    
-    struct matrix * points_sphere = generate_sphere(cx, cy, cz, r, step);
-  int col;
-  double x, y, z;
+    sphere_points = generate_sphere(cx, cy, cz, r, step)
+    col = 0
+    for col in range(0, len(sphere_points)):
+        x = sphere_points[col][0]
+        y = sphere_points[col][1]
+        z = sphere_points[col][2]
   for (col = 0; col < points_sphere->cols; col++) {
     x = (points_sphere->m)[0][col];
     y = (points_sphere->m)[1][col];
