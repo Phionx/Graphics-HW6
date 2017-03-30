@@ -3,12 +3,14 @@ box
 200 500 100 200 100 400
 rotate
 x 20
+apply
 sphere
 200 200 200 200
 torus
 250 250 250 25 150
 rotate
 y 40
+apply
 display
 save
 pic.png
