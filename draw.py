@@ -3,41 +3,51 @@ from matrix import *
 from math import *
 
 def add_box( points, x, y, z, width, height, depth ):
-    add_edge(points, x, y, z, x + width, y, z)
-    add_edge(points, x, y, z, x, y - height, z)
-    add_edge(points, x + width, y, z, x + width, y, z - depth)
-    add_edge(points, x + width, y, z, x + width, y - height, z)
-    add_edge(points, x + width, y, z - depth, x, y, z - depth)
-    add_edge(points, x + width, y, z - depth, x + width, y - height, z - depth)
-    add_edge(points, x, y, z - depth, x, y, z)
-    add_edge(points, x, y, z - depth, x, y - height, z - depth)
-    add_edge(points, x, y - height, z, x + width, y - height, z)
-    add_edge(points, x + width, y - height, z, x + width, y - height, z - depth)
-    add_edge(points, x + width, y - height, z - depth, x, y - height, z - depth)
-    add_edge(points, x, y - height, z - depth, x, y - height, z)
+    add_edge(points, x, y, z, x, y, z);
+    add_edge(points, x + width, y, z, x + width, y, z);
+    add_edge(points, x + width, y + height, z, x + width, y + height, z);
+    add_edge(points, x, y + height, z, x, y + height, z);
+    add_edge(points, x, y, z + depth, x, y, z + depth);
+    add_edge(points, x + width, y, z + depth, x + width, y, z + depth);
+    add_edge(points, x + width, y + height, z + depth, x + width, y + height, z + depth);
+    add_edge(points, x, y + height, z + depth, x, y + height, z + depth);
 
+    
 def add_sphere( points, cx, cy, cz, r, step ):
-    '''
-    sphere_points = generate_sphere(cx, cy, cz, r, step)
-    col = 0
-    for col in range(0, len(sphere_points)):
-        x = sphere_points[col][0]
-        y = sphere_points[col][1]
-        z = sphere_points[col][2]
-  for (col = 0; col < points_sphere->cols; col++) {
-    x = (points_sphere->m)[0][col];
-    y = (points_sphere->m)[1][col];
-    z = (points_sphere->m)[2][col];
-    '''
-#add_edge(edges, x, y, z, x+1, y+1, z+1);
-    pass
+    new_points = []
+    generate_sphere(new_points, cx, cy, cz, r, step)
+    points.extend(new_points)
+
 def generate_sphere( points, cx, cy, cz, r, step ):
-    pass
+    a = int(1/step)
+    b = a
+    for phi in range(b):
+        rot = 2 * pi * phi / b
+        for theta in range(a):
+            angle = pi * theta / a
+            z = r * sin(angle) * sin(angle) + cz
+            y = r * sin(angle) * cos(angle) + cy
+            x = r * cos(angle) + cx
+            add_point(points, x, y, z)
+            add_point(points, x, y, z)
 
 def add_torus( points, cx, cy, cz, r0, r1, step ):
-    pass
+    new_points = []
+    generate_torus(new_points, cx, cy, cz, r0, r1, step)
+    points.extend(new_points)
+
 def generate_torus( points, cx, cy, cz, r0, r1, step ):
-    pass
+    a = int(1/step)
+    b = a
+    for phi in range(b):
+        rot = 2 * pi * phi / b
+        for theta in range(a):
+            angle = 2 * pi * theta / a
+            z = - sin(angle) * (r0 * cos(angle) + r1) + cz
+            y = r0 * sin(angle) + cy
+            x = cos(angle) * (r0 * cos(angle) + r1) + cx
+            add_point(points, x, y, z)
+            add_point(points, x, y, z)
 
 def add_circle( points, cx, cy, cz, r, step ):
     x0 = r + cx
