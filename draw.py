@@ -17,6 +17,7 @@ def add_box( points, x, y, z, width, height, depth ):
     add_edge(points, x, y - height, z - depth, x, y - height, z)
 
 def add_sphere( points, cx, cy, cz, r, step ):
+    '''
     sphere_points = generate_sphere(cx, cy, cz, r, step)
     col = 0
     for col in range(0, len(sphere_points)):
@@ -27,7 +28,8 @@ def add_sphere( points, cx, cy, cz, r, step ):
     x = (points_sphere->m)[0][col];
     y = (points_sphere->m)[1][col];
     z = (points_sphere->m)[2][col];
-add_edge(edges, x, y, z, x+1, y+1, z+1);
+    '''
+#add_edge(edges, x, y, z, x+1, y+1, z+1);
     pass
 def generate_sphere( points, cx, cy, cz, r, step ):
     pass
