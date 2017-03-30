@@ -25,8 +25,8 @@ def generate_sphere( points, cx, cy, cz, r, step ):
         rot = 2 * pi * phi / b
         for theta in range(a):
             angle = pi * theta / a
-            z = r * sin(angle) * sin(angle) + cz
-            y = r * sin(angle) * cos(angle) + cy
+            z = r * sin(angle) * sin(rot) + cz
+            y = r * sin(angle) * cos(rot) + cy
             x = r * cos(angle) + cx
             add_point(points, x, y, z)
             add_point(points, x, y, z)
@@ -43,9 +43,9 @@ def generate_torus( points, cx, cy, cz, r0, r1, step ):
         rot = 2 * pi * phi / b
         for theta in range(a):
             angle = 2 * pi * theta / a
-            z = - sin(angle) * (r0 * cos(angle) + r1) + cz
+            z = - sin(rot) * (r0 * cos(angle) + r1) + cz
             y = r0 * sin(angle) + cy
-            x = cos(angle) * (r0 * cos(angle) + r1) + cx
+            x = cos(rot) * (r0 * cos(angle) + r1) + cx
             add_point(points, x, y, z)
             add_point(points, x, y, z)
 
